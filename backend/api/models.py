@@ -37,6 +37,7 @@ class Achievement(models.Model):
     )
     name = models.CharField(max_length=100)
     description = models.TextField()
+    hidden = models.BooleanField()
     icon = models.ImageField()
     external_id = models.IntegerField()
     grade = models.CharField(
@@ -50,9 +51,12 @@ class Achievement(models.Model):
         db_table = "achievements"
 
 
-class UserAchievement(models.Model):
-    achievements = models.OneToOneField(Achievement, on_delete=models.CASCADE)
+class UnlockedAchievement(models.Model):
+    achievements = models.OneToOneField(
+        Achievement,
+        on_delete=models.CASCADE,
+    )
     time_unlocked = models.DateTimeField()
 
     class Meta:
-        db_table = "user_achievements"
+        db_table = "unlocked_achievements"
