@@ -52,7 +52,7 @@ class Achievement(models.Model):
 
 
 class UnlockedAchievement(models.Model):
-    achievements = models.OneToOneField(
+    achievement = models.OneToOneField(
         Achievement,
         on_delete=models.CASCADE,
     )

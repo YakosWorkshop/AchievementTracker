@@ -4,8 +4,7 @@ from pathlib import Path
 
 from django.test import SimpleTestCase
 
-from api.adapters.rpcs3 import ImportedGameData, RPCS3Adapter
-from api.adapters.rpcs3_parser import RPCS3Parser
+from api.services.rpcs3_parser import ImportedGameData, RPCS3Parser
 
 
 class RPCS3ParserTestCase(SimpleTestCase):
@@ -21,13 +20,13 @@ class RPCS3ParserTestCase(SimpleTestCase):
         self.assertIsInstance(result, dict)
 
 
-class RPCS3AdapterTestCase(SimpleTestCase):
+class RPCS3GameDataTestCase(SimpleTestCase):
     def test_get_game_data_exports_json(self):
         trophy_directory = Path(
             "/home/jacobv/.config/rpcs3/dev_hdd0/home/00000001/"
             "trophy/NPWR00900_00"
         )
-        result = RPCS3Adapter().get_game_data(trophy_directory)
+        result = RPCS3Parser().get_game_data(trophy_directory)
 
         self.assertIsInstance(result, ImportedGameData)
         self.assertTrue(result.title)
