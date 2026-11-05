@@ -14,7 +14,7 @@ __pycache__/
 /backend/media/
 
 # Generated RPCS3 import previews
-/backend/NPWR*_import.json
+/output/
 
 # Frontend dependencies and build output
 node_modules/
